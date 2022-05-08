@@ -49,9 +49,11 @@ public abstract class PayHostWindow extends JFrame {
 
 	protected final JScrollPane scrollRequestArea = new JScrollPane();
 	protected final JScrollPane scrollResponseArea = new JScrollPane();
-
+	
 	protected JTextArea requestArea;
 	protected JTextArea responseArea;
+	private JSplitPane reqResPanel;
+	
 	protected transient String resource = null;
 	private transient String soapAction = null;
 
@@ -65,7 +67,7 @@ public abstract class PayHostWindow extends JFrame {
 		
 		
 		setBackground(new Color(203, 203, 203));
-		setSize(new Dimension(1300, 650));
+		setSize(new Dimension(1300, 750));
 		setLocationRelativeTo(null);
 		setAlwaysOnTop(true);
 		setVisible(true);
@@ -76,6 +78,7 @@ public abstract class PayHostWindow extends JFrame {
 
 	private void updateRequestArea() {
 		requestArea.setText(envelope(resource, formFields));
+		reqResPanel.setDividerLocation(600);
 	}
 
 	private void initCommonComponents(String title) {
@@ -106,7 +109,7 @@ public abstract class PayHostWindow extends JFrame {
 	}
 
 	private JPanel createRightPanel() {
-		JSplitPane reqResPanel = createReqResPanel();
+		reqResPanel = createReqResPanel();
 		JPanel actionsPanel = createActionsPanel();
 
 		JPanel rightPanel = new JPanel();
@@ -147,10 +150,9 @@ public abstract class PayHostWindow extends JFrame {
 		responseArea = createTextArea("Response");
 		scrollResponseArea.setViewportView(responseArea);
 
-		JSplitPane reqResPanel = new JSplitPane(JSplitPane.VERTICAL_SPLIT, scrollRequestArea, scrollResponseArea);
+		reqResPanel = new JSplitPane(JSplitPane.VERTICAL_SPLIT, scrollRequestArea, scrollResponseArea);
 		reqResPanel.setDividerSize(3);
 		reqResPanel.setOneTouchExpandable(true);
-		reqResPanel.setDividerLocation(150);
 		
 		return reqResPanel;
 	}
@@ -260,6 +262,7 @@ public abstract class PayHostWindow extends JFrame {
 			LOG.log(Level.SEVERE, "Request failed", ex);
 
 		} finally {
+			reqResPanel.setDividerLocation(100);
 			btnSend.setEnabled(true);
 		}
 	}

@@ -13,7 +13,7 @@ public class LookupValut extends PayHostWindow {
 	private JTextField vaultId;
 
 	public LookupValut() {
-		super("Lookup Valut", "LookUpVaultRequest", "SingleVaultRequest");
+		super("Lookup Valut", "LookupVaultRequest", "SingleVaultRequest");
 	}
 
 	@Override
