@@ -1,0 +1,10 @@
+<ns1:SingleFollowUpRequest>
+	<ns1:RefundRequest>
+		<ns1:Account>
+			<ns1:PayGateId>{payGateId}</ns1:PayGateId>
+			<ns1:Password>{password}</ns1:Password>
+		</ns1:Account>
+		<ns1:TransactionId>{transactionId}</ns1:TransactionId>
+		<ns1:Amount>{amount}</ns1:Amount>
+	</ns1:RefundRequest>
+</ns1:SingleFollowUpRequest>

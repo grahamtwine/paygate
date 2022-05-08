@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope
+   xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+   xmlns:ns1="http://www.paygate.co.za/PayHOST"
+   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
+   SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+   <SOAP-ENV:Body>
+      <ns1:WebPaymentRequest>
+            <ns1:Account>
+               <ns1:PayGateId>{PayGateId}</ns1:PayGateId>
+               <ns1:Password>{Password}</ns1:Password>
+            </ns1:Account>
+            <ns1:Customer>
+               <ns1:FirstName>{FirstName}</ns1:FirstName>
+               <ns1:LastName>{LastName}</ns1:LastName>
+               <ns1:Email>{Email}</ns1:Email>
+            </ns1:Customer>
+            <ns1:CardNumber>{CardNumber}</ns1:CardNumber>
+            <ns1:CardExpiryDate>{CardExpiryDate}</ns1:CardExpiryDate>
+            <ns1:Order>
+               <ns1:MerchantOrderId>{MerchantOrderId}</ns1:MerchantOrderId>
+               <ns1:Currency>{Currency}</ns1:Currency>
+               <ns1:Amount>{Amount}</ns1:Amount>
+            </ns1:Order>
+         </ns1:WebPaymentRequest>
+   </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+             
+             
