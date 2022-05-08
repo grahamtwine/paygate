@@ -1,9 +1,8 @@
-package za.co.payhost;
+package za.co.payhost.ui;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -24,102 +23,82 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
-import za.co.payhost.ui.UIUtils;
-import za.co.payhost.ui.payhost.singlefollowup.SingleFollowUpTestQuery;
-import za.co.payhost.ui.payhost.singlefollowup.SingleFollowUpTestRefund;
-import za.co.payhost.ui.payhost.singlefollowup.SingleFollowUpTestSettlement;
-import za.co.payhost.ui.payhost.singlefollowup.SingleFollowUpTestVoid;
-import za.co.payhost.ui.payhost.singlepayment.CardPaymentTest;
-import za.co.payhost.ui.payhost.singlepayment.TokenPaymentTest;
-import za.co.payhost.ui.payhost.singlepayment.WebPaymentTest;
-import za.co.payhost.ui.payhost.singlepayout.SinglePayoutTest;
-import za.co.payhost.ui.payhost.vault.VaultTestCard;
-import za.co.payhost.ui.payhost.vault.VaultTestDelete;
-import za.co.payhost.ui.payhost.vault.VaultTestLookup;
+import za.co.payhost.ui.payhost.followup.FollowUpQuery;
+import za.co.payhost.ui.payhost.followup.FollowUpRefund;
+import za.co.payhost.ui.payhost.followup.FollowUpSettlement;
+import za.co.payhost.ui.payhost.followup.FollowUpVoid;
+import za.co.payhost.ui.payhost.payment.CardPayment;
+import za.co.payhost.ui.payhost.payment.TokenPayment;
+import za.co.payhost.ui.payhost.payment.WebPayment;
+import za.co.payhost.ui.payhost.singlepayout.SinglePayout;
+import za.co.payhost.ui.payhost.vault.CardVault;
+import za.co.payhost.ui.payhost.vault.DeleteVault;
+import za.co.payhost.ui.payhost.vault.LookupValut;
 import za.co.payhost.ui.payweb3.Initiate;
 import za.co.payhost.ui.payweb3.Query;
 
 /**
  *
- * @author App Inlet (Pty) Ltd
+ * @author Graham.Twine@liquidesign.co.za
  */
 public class Main extends JFrame {
 	private static final long serialVersionUID = -2598793367353803692L;
-	private static final Logger LOG = Logger.getLogger("Main");
 
-	private static final String WEB_PAY_QUERY = "Web Pay Query";
-	private static final String CARD_PAYMENT = "Card Payment";
-	private static final String TOKEN_PAYMENT = "Token Payment";
-	private static final String WEB_PAYMENT = "Web Payment";
-	private static final String SINGLE_PAYOUT = "Single Payout";
-	private static final String VOID = "Void";
-	private static final String SETTLEMENT = "Settlement";
-	private static final String REFUND = "Refund";
+	static final Logger LOG = Logger.getLogger("Main");
 
-	private static final String VAULT_CARD = "Vault Card";
-	private static final String VAULT_LOOKUP = "Vault Lookup";
-	private static final String VAULT_DELETE = "Vault Delete";
-	private static final String FOLLOW_UP_QUERY = "Query";
-
-	private static final Dimension WINDOW_SIZE = new Dimension(1100, 400);
-	private static final Dimension BUTTON_SIZE = new Dimension(150, 70);
-
-	
 	public Main() {
 		initComponents();
-		setMinimumSize(WINDOW_SIZE);
-		setPreferredSize(WINDOW_SIZE);
+		setMinimumSize(UIUtils.WINDOW_SIZE);
+		setPreferredSize(UIUtils.WINDOW_SIZE);
 		setLocationRelativeTo(null);
 		pack();
 		setVisible(true);
 	}
-	
-	
+
 	private void btnClickedEvent(ActionEvent evt) {
 		String command = evt.getActionCommand();
 
-		if (WEB_PAY_QUERY.equals(command)) {
+		if (UIUtils.WEB_PAY_QUERY.equals(command)) {
 			new Query();
 
 		} else if (UIUtils.PAYWEB3_INITIATE.equals(command)) {
 			new Initiate();
 
-		} else if (VAULT_DELETE.equals(command)) {
-			new VaultTestDelete();
+		} else if (UIUtils.VAULT_DELETE.equals(command)) {
+			new DeleteVault();
 
-		} else if (VAULT_LOOKUP.equals(command)) {
-			new VaultTestLookup();
+		} else if (UIUtils.VAULT_LOOKUP.equals(command)) {
+			new LookupValut();
 
-		} else if (FOLLOW_UP_QUERY.equals(command)) {
-			new SingleFollowUpTestQuery();
+		} else if (UIUtils.FOLLOW_UP_QUERY.equals(command)) {
+			new FollowUpQuery();
 
-		} else if (REFUND.equals(command)) {
-			new SingleFollowUpTestRefund();
+		} else if (UIUtils.REFUND.equals(command)) {
+			new FollowUpRefund();
 
-		} else if (SETTLEMENT.equals(command)) {
-			new SingleFollowUpTestSettlement();
+		} else if (UIUtils.SETTLEMENT.equals(command)) {
+			new FollowUpSettlement();
 
-		} else if (VOID.equals(command)) {
-			new SingleFollowUpTestVoid();
+		} else if (UIUtils.VOID.equals(command)) {
+			new FollowUpVoid();
 
-		} else if (SINGLE_PAYOUT.equals(command)) {
-			new SinglePayoutTest();
+		} else if (UIUtils.SINGLE_PAYOUT.equals(command)) {
+			new SinglePayout();
 
-		} else if (WEB_PAYMENT.equals(command)) {
-			new WebPaymentTest();
+		} else if (UIUtils.WEB_PAYMENT.equals(command)) {
+			new WebPayment();
 
-		} else if (TOKEN_PAYMENT.equals(command)) {
-			new TokenPaymentTest();
+		} else if (UIUtils.TOKEN_PAYMENT.equals(command)) {
+			new TokenPayment();
 
-		} else if (CARD_PAYMENT.equals(command)) {
-			new CardPaymentTest();
+		} else if (UIUtils.CARD_PAYMENT.equals(command)) {
+			new CardPayment();
 
-		} else if (VAULT_CARD.equals(command)) {
-			new VaultTestCard();
+		} else if (UIUtils.VAULT_CARD.equals(command)) {
+			new CardVault();
 		}
 	}
-	
-	
+
 	private void initComponents() {
 
 		JPanel root = new JPanel();
@@ -133,11 +112,10 @@ public class Main extends JFrame {
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setBackground(new Color(51, 204, 0));
 	}
-	
-	
+
 	private JPanel createPayWeb3Panel() {
 		JButton initiateBtn = createButton(UIUtils.PAYWEB3_INITIATE);
-		JButton queryBtn = createButton(WEB_PAY_QUERY);
+		JButton queryBtn = createButton(UIUtils.WEB_PAY_QUERY);
 
 		JPanel p = new JPanel();
 		p.setLayout(new GridLayout(1, 2, 26, 3));
@@ -155,29 +133,29 @@ public class Main extends JFrame {
 
 		return payWeb3;
 	}
-	
-	
+
 	private JPanel createPayHostPanel() {
-		JButton singlePayoutBtn = createButton(SINGLE_PAYOUT);
+		JButton singlePayoutBtn = createButton(UIUtils.SINGLE_PAYOUT);
 
-		JButton webPaymentBtn = createButton(WEB_PAYMENT);
-		JButton tokenPaymentBtn = createButton(TOKEN_PAYMENT);
-		JButton cardPaymentBtn = createButton(CARD_PAYMENT);
+		JButton webPaymentBtn = createButton(UIUtils.WEB_PAYMENT);
+		JButton tokenPaymentBtn = createButton(UIUtils.TOKEN_PAYMENT);
+		JButton cardPaymentBtn = createButton(UIUtils.CARD_PAYMENT);
 
-		JButton vaultCardBtn = createButton(VAULT_CARD);
-		JButton vaultDeleteBtn = createButton(VAULT_DELETE);
-		JButton vaultLookupBtn = createButton(VAULT_LOOKUP);
+		JButton vaultCardBtn = createButton(UIUtils.VAULT_CARD);
+		JButton vaultDeleteBtn = createButton(UIUtils.VAULT_DELETE);
+		JButton vaultLookupBtn = createButton(UIUtils.VAULT_LOOKUP);
 
-		JButton payHostQueryBtn = createButton(FOLLOW_UP_QUERY);
-		JButton refundBtn = createButton(REFUND);
-		JButton settlementBtn = createButton(SETTLEMENT);
-		JButton voidBtn = createButton(VOID);
+		JButton payHostQueryBtn = createButton(UIUtils.FOLLOW_UP_QUERY);
+		JButton refundBtn = createButton(UIUtils.REFUND);
+		JButton settlementBtn = createButton(UIUtils.SETTLEMENT);
+		JButton voidBtn = createButton(UIUtils.VOID);
 
 		JPanel singlePayoutOperations = new JPanel();
 		singlePayoutOperations.setLayout(new GridLayout(1, 4, 6, 3));
 		singlePayoutOperations.add(singlePayoutBtn);
 
-		TitledBorder singlePayoutTitle = BorderFactory.createTitledBorder(UIUtils.LOWERED_ETCHED_BORDER, SINGLE_PAYOUT);
+		TitledBorder singlePayoutTitle = BorderFactory.createTitledBorder(UIUtils.LOWERED_ETCHED_BORDER,
+				UIUtils.SINGLE_PAYOUT);
 		singlePayoutTitle.setTitleJustification(TitledBorder.LEFT);
 		singlePayoutTitle.setTitleFont(UIUtils.LBL_FONT);
 
@@ -192,7 +170,8 @@ public class Main extends JFrame {
 		singlePaymentOperations.add(tokenPaymentBtn);
 		singlePaymentOperations.add(cardPaymentBtn);
 
-		TitledBorder singlePaymentTitle = BorderFactory.createTitledBorder(UIUtils.LOWERED_ETCHED_BORDER, "Single Payment");
+		TitledBorder singlePaymentTitle = BorderFactory.createTitledBorder(UIUtils.LOWERED_ETCHED_BORDER,
+				"Single Payment");
 		singlePaymentTitle.setTitleJustification(TitledBorder.LEFT);
 		singlePaymentTitle.setTitleFont(UIUtils.LBL_FONT);
 
@@ -223,7 +202,8 @@ public class Main extends JFrame {
 		singleFollowupOperations.add(settlementBtn);
 		singleFollowupOperations.add(voidBtn);
 
-		TitledBorder singleFollowUpTitle = BorderFactory.createTitledBorder(UIUtils.LOWERED_ETCHED_BORDER, "Single Follow Up");
+		TitledBorder singleFollowUpTitle = BorderFactory.createTitledBorder(UIUtils.LOWERED_ETCHED_BORDER,
+				"Single Follow Up");
 		singleFollowUpTitle.setTitleJustification(TitledBorder.LEFT);
 		singleFollowUpTitle.setTitleFont(UIUtils.LBL_FONT);
 
@@ -250,19 +230,19 @@ public class Main extends JFrame {
 
 		return payHost;
 	}
-	
+
 	private JButton createButton(String label) {
 
 		JButton b = new JButton();
-		 
+
 		Border line = new LineBorder(Color.BLACK);
 		Border margin = new EmptyBorder(5, 15, 5, 15);
 		Border compound = new CompoundBorder(line, margin);
 		b.setBorder(compound);
-		b.setPreferredSize(BUTTON_SIZE);
-		b.setSize(BUTTON_SIZE);
-		b.setMaximumSize(BUTTON_SIZE);
-		b.setMinimumSize(BUTTON_SIZE);
+		b.setPreferredSize(UIUtils.BUTTON_SIZE);
+		b.setSize(UIUtils.BUTTON_SIZE);
+		b.setMaximumSize(UIUtils.BUTTON_SIZE);
+		b.setMinimumSize(UIUtils.BUTTON_SIZE);
 		b.setBackground(UIUtils.BTN_BG_COLOUR);
 		b.setFont(UIUtils.BTN_FONT);
 		b.setForeground(UIUtils.COLOUR_WHITE);
@@ -280,14 +260,12 @@ public class Main extends JFrame {
 	public static void main(String[] args) {
 		System.setProperty("awt.useSystemAAFontSettings", "on");
 		System.setProperty("swing.aatext", "true");
-		
+
 		try {
 			UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
 
-		} catch ( ClassNotFoundException
-				| InstantiationException
-				| IllegalAccessException
-				| UnsupportedLookAndFeelException ex ) {
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+				| UnsupportedLookAndFeelException ex) {
 			LOG.log(Level.SEVERE, null, ex);
 		}
 

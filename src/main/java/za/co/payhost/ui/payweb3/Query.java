@@ -1,63 +1,59 @@
 package za.co.payhost.ui.payweb3;
 
-import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import za.co.payhost.ui.Mockups;
-import za.co.payhost.ui.PayHostWindow;
 import za.co.payhost.ui.UIUtils;
 
 /**
  *
- * @author App Inlet (Pty) Ltd
+ * @author Graham.Twine@liquidesign.co.za
  */
-public class Query extends PayHostWindow {
+public class Query extends PayWeb3Window {
 	private static final long serialVersionUID = -511034254785983399L;
 
-	
 	public Query() {
 		super(UIUtils.PAYWEB3_QUERY, UIUtils.PAYWEB3_QUERY_ENDPOINT);
 	}
-	
-	
+
 	@Override
 	protected void createMenu() {
-		
-		JLabel lblPaygateId = createLabel("Pay Gate ID");
-		payGateIDField = createTextField(UIUtils.PAYGATE_ID);
-		
-		JLabel lblChecksum = createLabel("Checksum");
-		checksumField = createTextField(UIUtils.CHECKSUM);
+		payGateId = createTextField(UIUtils.PAYGATE_ID);
+		checksum = createTextField(UIUtils.CHECKSUM);
+		payRequestId = createTextField(UIUtils.PAY_REQUEST_ID);
+		reference = createTextField(UIUtils.REFERENCE);
 
-
-		JLabel lblPayRequestId = createLabel("PAY REQUEST ID");
-		payRequestIDField = createTextField(UIUtils.PAY_REQUEST_ID);
-		
-		JLabel lblReference = createLabel("Reference");
-		referenceField = createTextField(UIUtils.REFERENCE);
-		
-		addMenuItem(lblPaygateId,payGateIDField);
-		addMenuItem(lblReference,referenceField);
-		addMenuItem(lblChecksum,checksumField);
-		addMenuItem(lblPayRequestId,payRequestIDField);
+		addMenuItem("Pay Gate ID", payGateId);
+		addMenuItem("Reference", reference);
+		addMenuItem("Pay Request ID", payRequestId);
+		addMenuItem("Checksum", checksum);
 	}
 
-	
 	@Override
 	protected void resetFormToDefaultValues() {
-		formData = Mockups.paywebQuery();
-		
-		payGateIDField.setText(formData.getProperty(UIUtils.PAYGATE_ID));
-		referenceField.setText(formData.getProperty(UIUtils.REFERENCE));
-		payRequestIDField.setText(formData.getProperty(UIUtils.PAY_REQUEST_ID));
-		checksumField.setText(formData.getProperty(UIUtils.CHECKSUM));
-		
-		requestArea.setText(payWeb.toString(formData));
+		paywebQuery();
+
+		payGateId.setText(formFields.getProperty(UIUtils.PAYGATE_ID));
+		reference.setText(formFields.getProperty(UIUtils.REFERENCE));
+		payRequestId.setText(formFields.getProperty(UIUtils.PAY_REQUEST_ID));
+		checksum.setText(formFields.getProperty(UIUtils.CHECKSUM));
+
+		requestArea.setText(formFields.toString());
 	}
-	
-	
-	private JTextField payGateIDField;
-	private JTextField referenceField;
-	private JTextField checksumField;
-	private JTextField payRequestIDField;
+
+	/**
+	 * paywebQuery Properties
+	 *
+	 * @return FormFields
+	 */
+	private void paywebQuery() {
+		formFields.setProperty(UIUtils.PAYGATE_ID, "10011072130");
+		formFields.setProperty(UIUtils.REFERENCE, "pgtest_123456789");
+		formFields.setProperty(UIUtils.PAY_REQUEST_ID, "23B785AE-C96C-32AF-4879-D2C9363DB6E8");
+		formFields.setProperty(UIUtils.CHECKSUM, "b41a77f83a275a849f23e30b4666e837");
+	}
+
+	private JTextField payGateId;
+	private JTextField reference;
+	private JTextField checksum;
+	private JTextField payRequestId;
 }
