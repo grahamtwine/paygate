@@ -37,7 +37,7 @@ public class PayHost {
 	 * @param url        Url of the request
 	 * @param soapAction Action Name
 	 * @param formFields Soap Message Body
-	 * @return Http Post Respsone as String
+	 * @return Http Post Response as String
 	 * @throws ParserConfigurationException ParserConfigurationException
 	 * @throws SAXException                 SAXException
 	 * @throws IOException                  IOException
@@ -57,14 +57,17 @@ public class PayHost {
 		// Execute and get the response.
 		HttpClient httpClient = HttpClientBuilder.create().build();
 		HttpResponse response = httpClient.execute(httpPost);
+		int status = response.getStatusLine().getStatusCode();
 		HttpEntity entity = response.getEntity();
-
 		String strResponse = null;
-		if (entity != null) {
+		if (entity != null &&  status == 200) {
 			strResponse = EntityUtils.toString(entity);
+			if (strResponse!= null && !strResponse.isEmpty()) {
+				return prettyFormat(strResponse);
+			}
 		}
-
-		return prettyFormat(strResponse);
+		
+		return status+"\n"+entity.getContentLength()+"\n"+strResponse;
 	}
 
 	/**
@@ -75,6 +78,7 @@ public class PayHost {
 	 */
 	private static String prettyFormat(String input) {
 		try {
+			System.out.println("Formating response =>"+input);
 			Source xmlInput = new StreamSource(new StringReader(input));
 			StringWriter stringWriter = new StringWriter();
 			StreamResult xmlOutput = new StreamResult(stringWriter);
@@ -87,7 +91,9 @@ public class PayHost {
 			return xmlOutput.getWriter().toString();
 
 		} catch (IllegalArgumentException | TransformerException e) {
-			throw new RuntimeException(e);
+			e.printStackTrace();
 		}
+		
+		return input;
 	}
 }

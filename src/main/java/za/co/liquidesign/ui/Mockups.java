@@ -34,7 +34,7 @@ public final class Mockups {
 		object.setProperty(UIUtils.MERCHANT_ORDER_ID, "order-1234");
 		object.setProperty(UIUtils.CURRENCY, "ZAR");
 		object.setProperty(UIUtils.AMOUNT, "100");
-		object.setProperty("vaultID", "c36a13e8-65a0-49fd-a12f-05fe78bf9eaa");
+		object.setProperty(UIUtils.VAULTID, "c36a13e8-65a0-49fd-a12f-05fe78bf9eaa");
 		return object;
 	}
 

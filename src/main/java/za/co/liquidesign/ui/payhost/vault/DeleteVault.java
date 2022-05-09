@@ -33,12 +33,12 @@ public class DeleteVault extends PayHostWindow {
 
 		payGateId.setText(formFields.getProperty(UIUtils.PAYGATEID));
 		password.setText(formFields.getProperty(UIUtils.PASSWORD));
-		vaultId.setText(formFields.getProperty("vaultId"));
+		vaultId.setText(formFields.getProperty(UIUtils.VAULTID));
 	}
 
 	private void deleteVault() {
-		formFields.setProperty(UIUtils.PAYGATEID, "10011064270");
+		formFields.setProperty(UIUtils.PAYGATEID, "10011072130");
 		formFields.setProperty(UIUtils.PASSWORD, "test");
-		formFields.setProperty("vaultID", "c36a13e8-65a0-49fd-a12f-05fe78bf9eaa");
+		formFields.setProperty(UIUtils.VAULTID, "5c633bfa-5359-482e-b144-2949aa332c74");
 	}
 }

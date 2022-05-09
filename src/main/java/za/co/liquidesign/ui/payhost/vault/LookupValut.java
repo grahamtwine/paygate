@@ -33,12 +33,12 @@ public class LookupValut extends PayHostWindow {
 
 		payGateId.setText(formFields.getProperty(UIUtils.PAYGATEID));
 		password.setText(formFields.getProperty(UIUtils.PASSWORD));
-		vaultId.setText(formFields.getProperty("vaultID"));
+		vaultId.setText(formFields.getProperty(UIUtils.VAULTID));
 	}
 
 	private void lookupVault() {
-		formFields.setProperty(UIUtils.PAYGATEID, "10011064270");
+		formFields.setProperty(UIUtils.PAYGATEID, "10011013800");
 		formFields.setProperty(UIUtils.PASSWORD, "test");
-		formFields.setProperty("vaultID", "c36a13e8-65a0-49fd-a12f-05fe78bf9eaa");
+		formFields.setProperty(UIUtils.VAULTID, "c36a13e8-65a0-49fd-a12f-05fe78bf9eaa");
 	}
 }

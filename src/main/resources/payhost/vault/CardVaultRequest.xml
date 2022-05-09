@@ -7,27 +7,17 @@
    xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/"
    SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
    <SOAP-ENV:Body>
-      <ns1:SinglePayoutRequest>
-         <ns1:CardPayoutRequest>
-            <ns1:Account>
-               <ns1:PayGateId>{PayGateId}</ns1:PayGateId>
-               <ns1:Password>{Password}</ns1:Password>
-            </ns1:Account>
-            <ns1:Customer>
-               <ns1:FirstName>{FirstName}</ns1:FirstName>
-               <ns1:LastName>{LastName}</ns1:LastName>
-               <ns1:Email>{Email}</ns1:Email>
-            </ns1:Customer>
-            <ns1:CardNumber>{CardNumber}</ns1:CardNumber>
-            <ns1:CardExpiryDate>{CardExpiryDate}</ns1:CardExpiryDate>
-            <ns1:Order>
-               <ns1:MerchantOrderId>{MerchantOrderId}</ns1:MerchantOrderId>
-               <ns1:Currency>{Currency}</ns1:Currency>
-               <ns1:Amount>{Amount}</ns1:Amount>
-            </ns1:Order>
-         </ns1:CardPayoutRequest>
-      </ns1:SinglePayoutRequest>
-   </SOAP-ENV:Body>
+<ns1:SingleVaultRequest>
+   <ns1:CardVaultRequest>
+      <ns1:Account>
+         <ns1:PayGateId>{PayGateId}</ns1:PayGateId>
+         <ns1:Password>{Password}</ns1:Password>
+      </ns1:Account>
+      <ns1:CardNumber>{CardNumber}</ns1:CardNumber>
+      <ns1:CardExpiryDate>{CardExpiryDate}</ns1:CardExpiryDate>
+   </ns1:CardVaultRequest>
+</ns1:SingleVaultRequest>
+  </SOAP-ENV:Body>
 </SOAP-ENV:Envelope>
              
              

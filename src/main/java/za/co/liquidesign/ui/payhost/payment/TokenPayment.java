@@ -66,19 +66,33 @@ public class TokenPayment extends PayHostWindow {
 
 		payGateId.setText(formFields.getProperty(UIUtils.PAYGATEID));
 		password.setText(formFields.getProperty(UIUtils.PASSWORD));
+
+		customerTitle.setText(formFields.getProperty(UIUtils.TITLE));
+		firstName.setText(formFields.getProperty(UIUtils.FIRST_NAME));
+		lastName.setText(formFields.getProperty(UIUtils.LAST_NAME));
+		emailAddress.setText(formFields.getProperty(UIUtils.EMAIL));
+		
 		token.setText(formFields.getProperty(UIUtils.TOKEN));
 		tokenDetail.setText(formFields.getProperty(UIUtils.TOKEN_DETAIL));
+		
 		merchantOrderId.setText(formFields.getProperty(UIUtils.MERCHANT_ORDER_ID));
 		currency.setText(formFields.getProperty(UIUtils.CURRENCY));
 		amount.setText(formFields.getProperty(UIUtils.AMOUNT));
 	}
 
 	private void tokenPayment() {
-		formFields.setProperty(UIUtils.PAYGATEID, "10011064270");
+		formFields.setProperty(UIUtils.PAYGATEID, "10011072130");
 		formFields.setProperty(UIUtils.PASSWORD, "test");
+		
+		formFields.setProperty(UIUtils.TITLE, "Mr");
+		formFields.setProperty(UIUtils.FIRST_NAME, "Joe");
+		formFields.setProperty(UIUtils.LAST_NAME, "Soap");
+		formFields.setProperty(UIUtils.EMAIL, "joe@soap.com");
+		
 		formFields.setProperty(UIUtils.TOKEN, "2258098676320541501");
 		formFields.setProperty(UIUtils.TOKEN_DETAIL, "VCO");
-		formFields.setProperty(UIUtils.MERCHANT_ORDER_ID, "order-1234");
+		
+		formFields.setProperty(UIUtils.MERCHANT_ORDER_ID, "Reference");
 		formFields.setProperty(UIUtils.CURRENCY, "ZAR");
 		formFields.setProperty(UIUtils.AMOUNT, "100");
 	}
